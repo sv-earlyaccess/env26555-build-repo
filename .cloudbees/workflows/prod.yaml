@@ -1,0 +1,19 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: workflow
+name: prod
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    steps:
+      - uses: cloudbees-io/register-deployed-artifact@v2
+        with:
+          labels: aspm-test
+          artifact-id: 342f9e73-224f-4740-ac85-877ad682b304
+          target-environment: qa
+      - uses: cloudbees-io/register-deployed-artifact@v2
+        with:
+          labels: jenkins
+          artifact-id: 342f9e73-224f-4740-ac85-877ad682b304
+          target-environment: Production
